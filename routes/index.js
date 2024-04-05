@@ -37,11 +37,7 @@ passport.deserializeUser(async(id, done) => {
     done(error);
   }
 });
-const messageDefault = {
-  username: 'test1',
-  message: "12345",
-  timestamp: Date()
-} 
+ 
 router.get("/", async(req, res, next) => {
   const messages = await Message.find().sort({timestamp: 1}).populate('username').exec();
   res.render("index", { user: req.user, messages: messages })
