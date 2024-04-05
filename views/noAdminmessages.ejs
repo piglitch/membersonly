@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Messages</title>
+</head>
+<body>
+    <% if (messages.length > 0) { %>
+        <h1>Messages</h1>
+        <ul>
+            <% messages.forEach(message => { %>
+               <li><%= message.message %> (<%= message.timestamp %>)</li> 
+            <% }); %>
+        </ul>
+    <% } else { %>
+        <p>No messages available</p>
+    <% } %>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="/public/stylesheets/style.css">
+</head>
+<body>
+  <% if (user) { %>
+    <% if (user.admin === true) { %>
+      <h1>WELCOME BACK <%= user.username %></h1>
+      <h2>You have admin privileges</h2>
+      <div>
+        <%- include('messagesForm') %>
+      </div>
+      <p><a href="/send-messages">send message</a></p>
+      <a href="/log-out">LOG OUT</a>
+    <% } else { %>
+      <h1>WELCOME BACK <%= user.username %></h1>
+      <div>
+        <%- include('messagesForm') %>
+      </div>
+      <p><a href="/send-messages">send message</a></p>
+      <a href="/log-out">LOG OUT</a>
+    <% } %>
+  <% } else { %>
+    <h1>Please login</h1>
+    <form action="/log-in" method="POST">
+      <label for="username">Username</label>
+      <input name="username" placeholder="username" type="text" />
+      <p />
+      <label for="password">Password</label>
+      <input name="password" type="password" />
+      <p><button>Log In</button></p>
+    </form>
+  <% } %>
+  <h3>OR</h3>
+  <a href="/sign-up">Sign Up</a>
+  
+  <% if (user && user.admin === true) { %>
+    <div>
+      <%- include('messages') %>
+    </div>
+  <% } else { %>
+    <div>
+      <%- include('noAdminmessages') %>
+    </div>
+  <% } %>  
+  
+</body>
+</html>
